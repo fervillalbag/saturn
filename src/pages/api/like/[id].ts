@@ -9,13 +9,28 @@ const handler = async (
   req: NextApiRequest,
   res: NextApiResponse
 ): Promise<void> => {
-  const { method, query } = req
+  const { method, body, query } = req
 
   switch (method) {
+    case 'GET':
+      try {
+        const isLike = await Like.findOne({ idPost: query.id }).where({
+          idUser: body.idUser
+        })
+        if (!isLike) return res.status(201).json({ response: false })
+        return res.status(200).json({ response: true })
+      } catch (error) {
+        console.log(error)
+        return res.status(200).json({ msg: error })
+      }
+
     case 'DELETE':
       try {
-        const postDeleted = await Like.findOneAndDelete({ _id: query.id })
-        if (!postDeleted) return res.status(201).json({ msg: 'Like not found' })
+        const likeDeleted = await Like.findOneAndDelete({
+          idPost: query.id,
+          idUser: body.idUser
+        })
+        if (!likeDeleted) return res.status(201).json({ msg: 'Like not found' })
         return res.status(200).json({ msg: 'Like deleted' })
       } catch (error) {
         console.log(error)
