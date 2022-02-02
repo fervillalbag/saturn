@@ -16,7 +16,7 @@ const PostCreate: React.FC = () => {
 
   const handleCreatePost = async () => {
     try {
-      const newPost = await fetch('http://localhost:3000/api/post', {
+      const newPost = await fetch('https://saturn.fervillalbag.com/api/post', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

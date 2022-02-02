@@ -27,7 +27,9 @@ const PostDetail: React.FC<PostDetailIprops> = ({ post }) => {
 export const getServerSideProps: GetServerSideProps = async ({
   query
 }): Promise<DataType> => {
-  const res = await fetch(`http://localhost:3000/api/post/${query.id}`)
+  const res = await fetch(
+    `https://saturn.fervillalbag.com/api/post/${query.id}`
+  )
   const post = await res.json()
 
   return {

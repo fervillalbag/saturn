@@ -49,7 +49,7 @@ const Home: React.FC<HomeIprops> = ({ posts }) => {
 
 export const getServerSideProps: GetServerSideProps =
   async (): Promise<DataType> => {
-    const res = await fetch('http://localhost:3000/api/post')
+    const res = await fetch('https://saturn.fervillalbag.com/api/post')
     const posts = await res.json()
 
     return {
