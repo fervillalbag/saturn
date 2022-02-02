@@ -22,11 +22,17 @@ const Home: React.FC<HomeIprops> = ({ posts }) => {
       {posts.length === 0 ? (
         <span className="block">there are no posts</span>
       ) : (
-        posts.map((post: Post) => (
-          <div key={post._id}>
-            <span className="block">{post.title}</span>
-          </div>
-        ))
+        <div className="grid grid-cols-4 gap-8">
+          {posts.map((post: Post) => (
+            <div
+              key={post._id}
+              className="border cursor-pointer p-2"
+              onClick={() => router.push(`/post/${post._id}`)}
+            >
+              <span className="block">{post.title}</span>
+            </div>
+          ))}
+        </div>
       )}
 
       <div className="mt-2">

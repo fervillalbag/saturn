@@ -4,11 +4,13 @@ const PostSchema = new Schema(
   {
     title: {
       type: String,
-      required: [true, 'Title is required']
+      required: [true, 'Title is required'],
+      trim: true
     },
     description: {
       type: String,
-      required: [true, 'Description is required']
+      required: [true, 'Description is required'],
+      trim: true
     },
     image: {
       type: String || null,

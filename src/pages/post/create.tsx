@@ -1,3 +1,4 @@
+import { useRouter } from 'next/dist/client/router'
 import React, { useState } from 'react'
 
 interface PostData {
@@ -6,6 +7,8 @@ interface PostData {
 }
 
 const PostCreate: React.FC = () => {
+  const router = useRouter()
+
   const [postData, setPostData] = useState<PostData>({
     title: '',
     description: ''
@@ -21,6 +24,7 @@ const PostCreate: React.FC = () => {
         body: JSON.stringify(postData)
       })
       console.log(newPost)
+      router.push('/')
     } catch (error) {
       console.log(error)
     }
